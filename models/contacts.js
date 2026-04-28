@@ -1,35 +1,25 @@
 const fs = require("fs");
+const filePath = "../data/contacts.json";
 
-//Folder and JSON File Checking
-function checkFolder() {
-  const folderPath = "../data";
-  if (!fs.existsSync(folderPath)) {
-    fs.mkdirSync(folderPath);
-  }
-}
-
-function checkJsonFile() {
-  const jsonFilePath = "../data/contacts.json";
-  if (!fs.existsSync(jsonFilePath)) {
-    fs.writeFileSync(jsonFilePath, "[]", "utf-8");
-  }
-}
-
-//Helper Function
-
-//Get All The Contacts
-
+//Load
 function loadContact() {
-  const fileBuffer = fs.readFileSync("../data/contacts.json", "utf-8");
+  const fileBuffer = fs.readFileSync(filePath, "utf-8");
   const contacts = JSON.parse(fileBuffer);
   return contacts;
 }
 
-function getAllContacts() {
-  const contacts = loadContact();
-  return contacts.forEach((item) => item);
+//Save
+function saveContact(contacts) {
+  fs.writeFileSync(filePath, JSON.stringify(contacts, null, 2));
 }
 
+//Get All The Contacts
+function getAllContacts() {
+  const contacts = loadContact();
+  return contacts;
+}
+
+//get Contact By Phone Number
 function getContactByPhoneNumber(noHP) {
   const contacts = loadContact();
   const contact = contacts.find((item) => {
@@ -38,17 +28,26 @@ function getContactByPhoneNumber(noHP) {
   return contact;
 }
 
+//Add Contact
 function addContacts(nama, email, noHP) {
   const contacts = loadContact();
   const contact = { nama, email, noHP };
   contacts.push(contact);
 
-  fs.writeFileSync("../data/contacts.json", JSON.stringify(contacts));
+  saveContact(contacts);
 }
 
+//Delete Contact
 function deleteContactByPhoneNumber(noHP) {
   const contacts = loadContact();
   const filterContacts = contacts.filter((item) => item.noHP !== noHP);
 
-  fs.writeFileSync("../data/contacts.json", JSON.stringify(filterContacts));
+  saveContact(filterContacts);
 }
+
+module.exports = {
+  getAllContacts,
+  getContactByPhoneNumber,
+  addContacts,
+  deleteContactByPhoneNumber,
+};
