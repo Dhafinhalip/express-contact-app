@@ -14,3 +14,5 @@ function checkJsonFile() {
     fs.writeFileSync(jsonFilePath, "[]", "utf-8");
   }
 }
+
+module.exports = { checkFolder, checkJsonFile };
