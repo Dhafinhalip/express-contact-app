@@ -16,12 +16,14 @@ const store = (req, res) => {
 
   models.addContacts(nama, email, noHP);
 
-  res.redirect("/contacts");
+  res.redirect("/");
 };
 
 //Menghapus Data
 const destroy = () => {
   const noHP = req.body.noHP;
   models.deleteContactByPhoneNumber(noHP);
-  res.redirect("/contacts");
+  res.redirect("/");
 };
+
+module.exports = { index, addForm, store, destroy };
