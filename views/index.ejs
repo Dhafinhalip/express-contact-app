@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ContactFlow – Daftar Kontak</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <!-- ========== PAGE: CONTACTS ========== -->
@@ -63,7 +63,20 @@
 
           <!-- Contact List -->
           <div class="contact-list" id="contact-list">
-            <!-- Populated by JS -->
+            <% contacts.forEach(data => {  %>
+              <div class="contact-row" style="animation-delay:60ms">
+                <div class="contact-avatar"><%= getInitial(data.nama) %></div>
+                <span class="contact-name"><%= data.nama %></span>
+                <span class="contact-email"><%= data.email %></span>
+                <span class="contact-phone"><%= data.noHP %></span>
+                <form action="/delete" method="POST" style="display: inline;">
+                  <input type="hidden" name="noHP" value="<%= data.noHP %>">
+                  <button  class="delete-btn" title="Hapus kontak" onclick="return confirm('Yakin Ingin Menghapus ?')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+                  </button>
+                </form>
+              </div>
+            <% }) %>
           </div>
 
           <a href="#" class="view-all-link">
@@ -169,7 +182,7 @@
             </div>
 
             <!-- Form -->
-            <!-- <form action="/" method="post"></form> -->
+            <!-- Nama Lengkap -->
             <div class="form-group">
               <label class="form-label">NAMA LENGKAP</label>
               <div class="input-wrap">
@@ -187,6 +200,7 @@
                 </svg>
                 <input
                   type="text"
+                  name="nama"
                   class="form-input"
                   placeholder="Contoh: Budi Santoso"
                 />
@@ -210,6 +224,7 @@
                 </svg>
                 <input
                   type="email"
+                  name="email"
                   class="form-input"
                   placeholder="budi@example.com"
                 />
@@ -234,6 +249,7 @@
                 </svg>
                 <input
                   type="tel"
+                  name="noHP"
                   class="form-input"
                   placeholder="+62 812 3456 7890"
                 />
@@ -253,7 +269,7 @@
               </div>
             </div>
 
-            <button class="btn-primary full-btn">
+            <button type="submit" class="btn-primary full-btn">
               <svg
                 width="16"
                 height="16"
@@ -312,73 +328,14 @@
     </div>
 
     <script>
-      // ── Sample contacts data ──
-      const contacts = [
-        {
-          name: "Jonathan Doe",
-          email: "j.doe@flowstudio.com",
-          phone: "+1 (555) 012-3456",
-        },
-        {
-          name: "Sarah Adams",
-          email: "sarah.adams@email.com",
-          phone: "+62 812-9876-5432",
-        },
-        {
-          name: "Michael Brown",
-          email: "m.brown@techcorp.io",
-          phone: "+1 (202) 555-0198",
-        },
-        {
-          name: "Emily Kuncoro",
-          email: "emily.k@outlook.com",
-          phone: "+62 811-2233-4455",
-        },
-        {
-          name: "David Henderson",
-          email: "david.h@service.net",
-          phone: "+44 20 7946 0958",
-        },
-        {
-          name: "Anita Nur",
-          email: "anita.nur@univ.ac.id",
-          phone: "+62 856-4433-2211",
-        },
-      ];
-
-      function initials(name) {
-        return name
-          .split(" ")
-          .slice(0, 2)
-          .map((n) => n[0])
-          .join("")
-          .toUpperCase();
-      }
-
-      function renderContacts() {
-        const list = document.getElementById("contact-list");
-        list.innerHTML = contacts
-          .map(
-            (c, i) => `
-        <div class="contact-row" style="animation-delay:${i * 60}ms">
-          <div class="contact-avatar">${initials(c.name)}</div>
-          <span class="contact-name">${c.name}</span>
-          <span class="contact-email">${c.email}</span>
-          <span class="contact-phone">${c.phone}</span>
-          <button class="delete-btn" title="Hapus kontak" onclick="deleteContact(${i})">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-          </button>
-        </div>
-      `,
-          )
-          .join("");
-      }
-
-      function deleteContact(idx) {
-        contacts.splice(idx, 1);
-        renderContacts();
-      }
-
+      // function initials(name) {
+      //   return name
+      //     .split(" ")
+      //     .slice(0, 2)
+      //     .map((n) => n[0])
+      //     .join("")
+      //     .toUpperCase();
+      // }
       // ── Page navigation ──
       function showPage(name) {
         document
@@ -387,7 +344,7 @@
         document.getElementById("page-" + name).classList.add("active");
       }
 
-      // ── Category pill selection ──
+    //   // ── Category pill selection ──
       function selectCat(btn) {
         btn
           .closest(".category-group")
@@ -396,7 +353,7 @@
         btn.classList.add("active");
       }
 
-      // ── Avatar preview ──
+    //   // ── Avatar preview ──
       function previewAvatar(event) {
         const file = event.target.files[0];
         if (!file) return;
@@ -407,10 +364,6 @@
         };
         reader.readAsDataURL(file);
       }
-
-      // ── Init ──
-      renderContacts();
     </script>
   </body>
 </html>
-s
