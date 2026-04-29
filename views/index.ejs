@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ContactFlow – Daftar Kontak</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- ========== PAGE: CONTACTS ========== -->
+    <div class="page active" id="page-contacts">
+      <div class="app-shell">
+        <!-- Navbar -->
+        <nav class="navbar">
+          <span class="brand">ContactFlow</span>
+          <div class="nav-links">
+            <a href="#" class="nav-link active" onclick="showPage('contacts')"
+              >Contacts</a
+            >
+            <a href="#" class="nav-link" onclick="showPage('add')">Add New</a>
+          </div>
+          <div class="avatar-btn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+          </div>
+        </nav>
+
+        <!-- Content -->
+        <main class="main-content">
+          <div class="content-header">
+            <div>
+              <h1 class="page-title">My Contacts</h1>
+              <p class="page-sub">
+                Manage your professional and personal network.
+              </p>
+            </div>
+            <button class="btn-primary" onclick="showPage('add')">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <line x1="19" y1="8" x2="19" y2="14" />
+                <line x1="22" y1="11" x2="16" y2="11" />
+              </svg>
+              Add New Contact
+            </button>
+          </div>
+
+          <!-- Contact List -->
+          <div class="contact-list" id="contact-list">
+            <!-- Populated by JS -->
+          </div>
+
+          <a href="#" class="view-all-link">
+            View all 124 contacts
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </a>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+          <span>© 2024 ContactFlow. Built for clarity.</span>
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Support</a>
+            <a href="#">Feedback</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- ========== PAGE: ADD NEW ========== -->
+    <div class="page" id="page-add">
+      <div class="app-shell">
+        <!-- Navbar -->
+        <nav class="navbar">
+          <span class="brand">ContactFlow</span>
+          <div class="nav-links">
+            <a href="#" class="nav-link" onclick="showPage('contacts')"
+              >Contacts</a
+            >
+            <a href="#" class="nav-link active" onclick="showPage('add')"
+              >Add New</a
+            >
+          </div>
+          <div class="avatar-btn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+          </div>
+        </nav>
+
+        <!-- Content -->
+        <main class="main-content add-main">
+          <h1 class="page-title center">Tambah Kontak Baru</h1>
+          <p class="page-sub center">
+            Simpan detail koneksi baru Anda dengan mudah.
+          </p>
+
+          <form action="/" method="POST" class="form-card">
+            <!-- Avatar Upload -->
+            <div class="avatar-upload-wrap">
+              <div class="avatar-upload" id="avatar-preview">
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#94a3b8"
+                  stroke-width="1.5"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
+              </div>
+              <label class="avatar-cam-btn" title="Upload foto">
+                <input
+                  type="file"
+                  accept="image/*"
+                  hidden
+                  onchange="previewAvatar(event)"
+                />
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path
+                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                  />
+                  <circle cx="12" cy="13" r="4" />
+                </svg>
+              </label>
+            </div>
+
+            <!-- Form -->
+            <!-- <form action="/" method="post"></form> -->
+            <div class="form-group">
+              <label class="form-label">NAMA LENGKAP</label>
+              <div class="input-wrap">
+                <svg
+                  class="input-icon"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
+                <input
+                  type="text"
+                  class="form-input"
+                  placeholder="Contoh: Budi Santoso"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">EMAIL</label>
+              <div class="input-wrap">
+                <svg
+                  class="input-icon"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <polyline points="2,4 12,13 22,4" />
+                </svg>
+                <input
+                  type="email"
+                  class="form-input"
+                  placeholder="budi@example.com"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">NO. HANDPHONE</label>
+              <div class="input-wrap">
+                <svg
+                  class="input-icon"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.8 19.8 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.12 6.12l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+                <input
+                  type="tel"
+                  class="form-input"
+                  placeholder="+62 812 3456 7890"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">KATEGORI</label>
+              <div class="category-group">
+                <button class="cat-btn" onclick="selectCat(this)">Work</button>
+                <button class="cat-btn" onclick="selectCat(this)">
+                  Family
+                </button>
+                <button class="cat-btn active" onclick="selectCat(this)">
+                  Friend
+                </button>
+              </div>
+            </div>
+
+            <button class="btn-primary full-btn">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path
+                  d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"
+                />
+                <polyline points="17 21 17 13 7 13 7 21" />
+                <polyline points="7 3 7 8 15 8" />
+              </svg>
+              Simpan Kontak
+            </button>
+
+            <button
+              class="btn-secondary full-btn"
+              onclick="showPage('contacts')"
+            >
+              Batalkan
+            </button>
+          </form>
+
+          <!-- Tip -->
+          <form class="tip-box">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="var(--primary)"
+              stroke="none"
+            >
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 2.74 1.54 5.12 3.81 6.38L9 17h6l.19-1.62C17.46 14.12 19 11.74 19 9c0-3.87-3.13-7-7-7zm1 14H11v-2h2v2zm0-4H11V7h2v6z"
+              />
+            </svg>
+            <p>
+              <strong>Tips:</strong> Menambahkan label kategori membantu Anda
+              menemukan kontak lebih cepat saat daftar Anda bertambah banyak.
+            </p>
+          </form>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+          <span>© 2024 ContactFlow. Built for clarity.</span>
+          <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Support</a>
+            <a href="#">Feedback</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      // ── Sample contacts data ──
+      const contacts = [
+        {
+          name: "Jonathan Doe",
+          email: "j.doe@flowstudio.com",
+          phone: "+1 (555) 012-3456",
+        },
+        {
+          name: "Sarah Adams",
+          email: "sarah.adams@email.com",
+          phone: "+62 812-9876-5432",
+        },
+        {
+          name: "Michael Brown",
+          email: "m.brown@techcorp.io",
+          phone: "+1 (202) 555-0198",
+        },
+        {
+          name: "Emily Kuncoro",
+          email: "emily.k@outlook.com",
+          phone: "+62 811-2233-4455",
+        },
+        {
+          name: "David Henderson",
+          email: "david.h@service.net",
+          phone: "+44 20 7946 0958",
+        },
+        {
+          name: "Anita Nur",
+          email: "anita.nur@univ.ac.id",
+          phone: "+62 856-4433-2211",
+        },
+      ];
+
+      function initials(name) {
+        return name
+          .split(" ")
+          .slice(0, 2)
+          .map((n) => n[0])
+          .join("")
+          .toUpperCase();
+      }
+
+      function renderContacts() {
+        const list = document.getElementById("contact-list");
+        list.innerHTML = contacts
+          .map(
+            (c, i) => `
+        <div class="contact-row" style="animation-delay:${i * 60}ms">
+          <div class="contact-avatar">${initials(c.name)}</div>
+          <span class="contact-name">${c.name}</span>
+          <span class="contact-email">${c.email}</span>
+          <span class="contact-phone">${c.phone}</span>
+          <button class="delete-btn" title="Hapus kontak" onclick="deleteContact(${i})">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          </button>
+        </div>
+      `,
+          )
+          .join("");
+      }
+
+      function deleteContact(idx) {
+        contacts.splice(idx, 1);
+        renderContacts();
+      }
+
+      // ── Page navigation ──
+      function showPage(name) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("page-" + name).classList.add("active");
+      }
+
+      // ── Category pill selection ──
+      function selectCat(btn) {
+        btn
+          .closest(".category-group")
+          .querySelectorAll(".cat-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+      }
+
+      // ── Avatar preview ──
+      function previewAvatar(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const prev = document.getElementById("avatar-preview");
+          prev.innerHTML = `<img src="${e.target.result}" alt="avatar" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />`;
+        };
+        reader.readAsDataURL(file);
+      }
+
+      // ── Init ──
+      renderContacts();
+    </script>
+  </body>
+</html>
+s
