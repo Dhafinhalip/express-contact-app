@@ -2,12 +2,7 @@ const models = require("../models/contacts");
 
 const index = (req, res) => {
   const contacts = models.getAllContacts();
-  res.render("index", { contacts });
-};
-
-//Menampilkan Halaman Form(GET)
-const addForm = (req, res) => {
-  res.render("add-contact", { title: "Form Tambah Kontak" });
+  res.render("index", { contacts, getInitial: models.initialName });
 };
 
 //Memproses Data dari Form (POST)
@@ -15,15 +10,14 @@ const store = (req, res) => {
   const { nama, email, noHP } = req.body;
 
   models.addContacts(nama, email, noHP);
-
   res.redirect("/");
 };
 
 //Menghapus Data
-const destroy = () => {
+const destroy = (req, res) => {
   const noHP = req.body.noHP;
   models.deleteContactByPhoneNumber(noHP);
   res.redirect("/");
 };
 
-module.exports = { index, addForm, store, destroy };
+module.exports = { index, store, destroy };

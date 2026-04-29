@@ -1,5 +1,5 @@
 const fs = require("fs");
-const filePath = "../data/contacts.json";
+const filePath = "./data/contacts.json";
 
 //Load
 function loadContact() {
@@ -37,6 +37,13 @@ function addContacts(nama, email, noHP) {
   saveContact(contacts);
 }
 
+function initialName(name) {
+  const spasi = name.indexOf(" ");
+  const firstInitial = name.slice(0, 1);
+  const secondInitial = name.slice(spasi + 1, spasi + 2);
+  return firstInitial + secondInitial;
+}
+
 //Delete Contact
 function deleteContactByPhoneNumber(noHP) {
   const contacts = loadContact();
@@ -50,4 +57,5 @@ module.exports = {
   getContactByPhoneNumber,
   addContacts,
   deleteContactByPhoneNumber,
+  initialName,
 };
