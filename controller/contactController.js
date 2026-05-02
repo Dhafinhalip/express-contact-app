@@ -40,6 +40,7 @@ const store = (req, res) => {
   if (!error.isEmpty()) {
     return res.render("index", {
       contacts: models.getAllContacts(),
+      getInitial: models.initialName,
       errors: error.mapped(),
       oldData: req.body,
     });

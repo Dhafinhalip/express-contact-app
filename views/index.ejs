@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- ========== PAGE: CONTACTS ========== -->
-    <div class="page active" id="page-contacts">
+    <div class="page <%= (typeof errors === 'undefined') ? 'active' : '' %>" id="page-contacts">
       <div class="app-shell">
         <!-- Navbar -->
         <nav class="navbar">
@@ -107,7 +107,7 @@
       </div>
     </div>
     <!-- ========== PAGE: ADD NEW ========== -->
-    <div class="page" id="page-add">
+    <div class="page <%= (typeof errors !== 'undefined') ? 'active' : '' %>" id="page-add">
       <div class="app-shell">
         <!-- Navbar -->
         <nav class="navbar">
@@ -203,7 +203,7 @@
                   name="nama"
                   class="form-input"
                   placeholder="Contoh: Budi Santoso"
-                  value="<%typeof oldData !== 'undefined' ? oldData.nama : ''%>"
+                  value="<%= typeof oldData !== 'undefined' ? oldData.nama : ''%>"
                   required
                 />
                 <% if (typeof errors !== 'undefined' && errors.nama) { %>
@@ -233,7 +233,8 @@
                   name="email"
                   class="form-input"
                   placeholder="budi@example.com"
-                  value="<%typeof oldData !== 'undefined' ? oldData.email : ''%>"
+                  value="<%= typeof oldData !== 'undefined' ? oldData.email : ''%>"
+                  required
                 />
                 <% if (typeof errors !== 'undefined' && errors.email) { %>
                   <small style="color: red;"><%= errors.email.msg %></small>
@@ -262,7 +263,8 @@
                   name="noHP"
                   class="form-input"
                   placeholder="+62 812 3456 7890"
-                  value="<%typeof oldData !== 'undefined' ? oldData.noHP : ''%>"
+                  value="<%= typeof oldData !== 'undefined' ? oldData.noHP : ''%>"
+                  required
                 />
                 <% if (typeof errors !== 'undefined' && errors.noHP) { %>
                   <small style="color: red;"><%= errors.noHP.msg %></small>
