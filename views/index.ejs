@@ -203,10 +203,16 @@
                   name="nama"
                   class="form-input"
                   placeholder="Contoh: Budi Santoso"
+                  value="<%typeof oldData !== 'undefined' ? oldData.nama : ''%>"
+                  required
                 />
+                <% if (typeof errors !== 'undefined' && errors.nama) { %>
+                  <small style="color: red;"><%= errors.nama.msg  %></small>
+                <% } %>
               </div>
             </div>
 
+            <!-- Email -->
             <div class="form-group">
               <label class="form-label">EMAIL</label>
               <div class="input-wrap">
@@ -227,7 +233,11 @@
                   name="email"
                   class="form-input"
                   placeholder="budi@example.com"
+                  value="<%typeof oldData !== 'undefined' ? oldData.email : ''%>"
                 />
+                <% if (typeof errors !== 'undefined' && errors.email) { %>
+                  <small style="color: red;"><%= errors.email.msg %></small>
+                <% } %>
               </div>
             </div>
 
@@ -252,7 +262,11 @@
                   name="noHP"
                   class="form-input"
                   placeholder="+62 812 3456 7890"
+                  value="<%typeof oldData !== 'undefined' ? oldData.noHP : ''%>"
                 />
+                <% if (typeof errors !== 'undefined' && errors.noHP) { %>
+                  <small style="color: red;"><%= errors.noHP.msg %></small>
+                <% } %>
               </div>
             </div>
 

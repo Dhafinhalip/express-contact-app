@@ -8,7 +8,7 @@ const contactController = require("../controller/contactController");
 router.get("/", contactController.index);
 
 //2. route untuk memproses data dari form
-router.post("/", contactController.store);
+router.post("/", contactController.validateContact, contactController.store);
 
 //3. route untuk menghapus kontak
 router.post("/delete", contactController.destroy);
